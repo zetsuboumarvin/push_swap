@@ -6,7 +6,7 @@
 #    By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 12:17:02 by jflorent          #+#    #+#              #
-#    Updated: 2019/11/04 13:59:40 by jflorent         ###   ########.fr        #
+#    Updated: 2019/11/04 18:34:21 by jflorent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MAKE = make
 LIBDIR = ft_printf/libft/
 PRINTFDIR = ft_printf/
 FLAGS = -Wall -Werror -Wextra
-SRCS = main.c parse_string.c stack.c
+SRCS = parse_string.c stack.c checker.c commands.c stack2.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME_CH)
@@ -28,7 +28,7 @@ $(PR_NAME):
 	gcc -c $(FLAGS) $<
 
 $(NAME_CH): $(PR_NAME) $(OBJS)
-	gcc $(FLAGS) -L$(PRINTFDIR) -lftprintf -o $@
+	gcc -g $(FLAGS) -L$(PRINTFDIR) -lftprintf $(OBJS) -o $@
 
 clean:
 	rm -f $(OBJS)
