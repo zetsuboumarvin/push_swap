@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:30:11 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/04 13:18:41 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/04 18:08:30 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ int					push(t_number **head, t_number *num)
 	return (1);
 }
 
+int					push_behind(t_number **head, t_number *num)
+{
+	t_number	*temp;
+
+	temp = *head;
+	if (!head)
+		return (0);
+	while (temp->next)
+		temp = temp->next;
+	temp->next = num;
+	num->next = 0;
+	return (1);
+}
+
 t_number			*pop(t_number **head)
 {
 	t_number	*node;
@@ -68,19 +82,4 @@ t_number			*pop(t_number **head)
 	node = *head;
 	*head = (*head)->next;
 	return (node);
-}
-
-void				free_stack(t_number **head)
-{
-	t_number		*temp;
-
-	if (head)
-	{
-		while (*head)
-		{
-			temp = (*head)->next;
-			free(*head);
-			*head = temp;
-		}
-	}
 }

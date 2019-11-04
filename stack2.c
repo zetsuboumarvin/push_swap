@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/04 17:38:18 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/04 18:28:07 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,39 @@ int		free_error(t_number **stack, t_number **stack2, int result)
 	free_stack(stack2);
 	ft_putstr_fd("Error\n", 2);
 	return (result);
+}
+
+void				free_stack(t_number **head)
+{
+	t_number		*temp;
+
+	if (head)
+	{
+		while (*head)
+		{
+			temp = (*head)->next;
+			free(*head);
+			*head = temp;
+		}
+	}
+}
+
+int					check_sort(t_number **head)
+{
+	t_number	*temp;
+
+	if (head)
+	{
+		temp = *head;
+		if (!(temp->next))
+			return (1);
+		while (temp->next)
+		{
+			if (temp->num > temp->next->num)
+				return (0);
+			temp = temp->next;
+		}
+		return (1);
+	}
+	return (0);
 }

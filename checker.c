@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/04 18:01:08 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/04 18:27:24 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ static int	do_instructions(t_number **stack, t_number **stack2, char *s)
 		return (push_from_to(stack, stack2));
 	else if (!ft_strcmp(s, "pb"))
 		return (push_from_to(stack2, stack));
+	else if (!ft_strcmp(s, "ra"))
+		return (rotate(stack));
+	else if (!ft_strcmp(s, "rb"))
+		return (rotate(stack2));
+	else if (!ft_strcmp(s, "rr"))
+		return (rotate(stack) && rotate(stack2));
+	else if (!ft_strcmp(s, "rra"))
+		return (rev_rotate(stack));
+	else if (!ft_strcmp(s, "rrb"))
+		return (rev_rotate(stack2));
+	else if (!ft_strcmp(s, "rrr"))
+		return (rev_rotate(stack) && rev_rotate(stack2));
+	return (0);
 }
 
 static int	read_instructions(t_number **stack, t_number **stack2)
@@ -60,6 +73,7 @@ static int	read_instructions(t_number **stack, t_number **stack2)
 		if (!do_instructions(stack, stack2, s))
 			return (free_error(stack, stack2, 0));
 	}
+	return (1);
 }
 
 int			main(int argc, char **argv)
@@ -72,11 +86,15 @@ int			main(int argc, char **argv)
 	if (argc == 1)
 		return (1);
 	while (argc-- > 1)
-	{
-		++argv;
-		if (!create_stack(stack, *argv))
+		if (!create_stack(&stack, *(++argv)))
 			return (1);
-		if (!read_instructions(&stack, &stack2))
-			return (1);
-	}
+	if (!read_instructions(&stack, &stack2))
+		return (1);
+	if (!check_sort(&stack))
+		ft_putstr("KO\n");
+	else
+		ft_putstr("OK\n");
+	free(stack);
+	free(stack2);
+	return (0);
 }
