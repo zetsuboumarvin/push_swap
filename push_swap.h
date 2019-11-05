@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:33:23 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/04 18:26:17 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:06:34 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,4 @@ int					rotate(t_number **stack);
 int					push_behind(t_number **head, t_number *num);
 int					rev_rotate(t_number **stack);
 int					check_sort(t_number **head);
+int					create_stack(t_number **stack, char *s);

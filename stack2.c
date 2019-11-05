@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/04 18:28:07 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:09:58 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,16 @@ int					check_sort(t_number **head)
 		return (1);
 	}
 	return (0);
+}
+
+int			create_stack(t_number **stack, char *s)
+{
+	int				num;
+
+	num = 0;
+	if (!parse_string(s, &num))
+		return (free_error(stack, 0, 0));
+	if (!stack_push_back(stack, num))
+		return (free_error(stack, 0, 0));
+	return (1);
 }

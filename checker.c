@@ -6,23 +6,11 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/05 17:18:43 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:10:02 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	create_stack(t_number **stack, char *s)
-{
-	int				num;
-
-	num = 0;
-	if (!parse_string(s, &num))
-		return (free_error(stack, 0, 0));
-	if (!stack_push_back(stack, num))
-		return (free_error(stack, 0, 0));
-	return (1);
-}
 
 static int	do_instructions(t_number **stack, t_number **stack2, char *s)
 {
