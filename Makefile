@@ -6,7 +6,7 @@
 #    By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 12:17:02 by jflorent          #+#    #+#              #
-#    Updated: 2019/11/04 18:34:21 by jflorent         ###   ########.fr        #
+#    Updated: 2019/11/04 18:48:35 by jflorent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ $(PR_NAME):
 	gcc -c $(FLAGS) $<
 
 $(NAME_CH): $(PR_NAME) $(OBJS)
-	gcc -g $(FLAGS) -L$(PRINTFDIR) -lftprintf $(OBJS) -o $@
+	gcc $(FLAGS) -L$(PRINTFDIR) -lftprintf $(OBJS) -o $@
 
 clean:
 	rm -f $(OBJS)
