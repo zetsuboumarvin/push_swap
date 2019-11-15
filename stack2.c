@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/05 18:09:58 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/13 12:01:15 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void				free_stack(t_number **head)
 
 	if (head)
 	{
+		if (*head && (*head)->prev)
+			(*head)->prev->next = 0;
 		while (*head)
 		{
 			temp = (*head)->next;
@@ -42,9 +44,9 @@ int					check_sort(t_number **head)
 	if (head)
 	{
 		temp = *head;
-		if (!(temp->next))
+		if (!(*head) || !(temp->next))
 			return (1);
-		while (temp->next)
+		while (temp->next && temp->next != *head)
 		{
 			if (temp->num > temp->next->num)
 				return (0);

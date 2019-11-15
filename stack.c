@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:30:11 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/04 18:08:30 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/14 12:03:09 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static t_number		*stack_create_node(int num)
 		return (0);
 	node->num = num;
 	node->next = 0;
+	node->prev = 0;
 	return (node);
 }
 
@@ -29,7 +30,6 @@ int					stack_push_back(t_number **head, int num)
 	t_number	*new;
 	t_number	*temp;
 
-	temp = *head;
 	new = stack_create_node(num);
 	if (!new || !head)
 		return (0);
@@ -37,24 +37,43 @@ int					stack_push_back(t_number **head, int num)
 		*head = new;
 	else
 	{
-		while (temp->next)
+		temp = *head;
+		while (temp && temp->next != *head)
 		{
 			if (temp->num == num)
 				return (0);
 			temp = temp->next;
 		}
-		if (temp->num == num)
+		if (temp && temp->num == num)
 			return (0);
-		temp->next = new;
+		push_behind(head, new);
 	}
 	return (1);
 }
 
 int					push(t_number **head, t_number *num)
 {
+	t_number	*temp;
+
+	temp = 0;
 	if (!head)
 		return (0);
-	num->next = *head;
+	if (*head)
+	{
+		num->next = *head;
+		temp = (*head)->prev;
+		(*head)->prev = num;
+	}
+	if (temp)
+	{
+		temp->next = num;
+		num->prev = temp;
+	}
+	else if (!temp && *head)
+	{
+		(*head)->next = num;
+		num->prev = *head;
+	}
 	*head = num;
 	return (1);
 }
@@ -63,13 +82,25 @@ int					push_behind(t_number **head, t_number *num)
 {
 	t_number	*temp;
 
-	temp = *head;
+	temp = 0;
 	if (!head)
 		return (0);
-	while (temp->next)
-		temp = temp->next;
-	temp->next = num;
-	num->next = 0;
+	if (*head)
+	{
+		num->next = *head;
+		temp = (*head)->prev;
+		(*head)->prev = num;
+	}
+	if (temp)
+	{
+		temp->next = num;
+		num->prev = temp;
+	}
+	else if (!temp && *head)
+	{
+		(*head)->next = num;
+		num->prev = *head;
+	}
 	return (1);
 }
 
@@ -81,5 +112,17 @@ t_number			*pop(t_number **head)
 		return (0);
 	node = *head;
 	*head = (*head)->next;
+	if (*head && node->prev == *head)
+	{
+		(*head)->prev = 0;
+		(*head)->next = 0;
+	}
+	else if (*head && node->prev != *head)
+	{
+		(*head)->prev = node->prev;
+		node->prev->next = *head;
+	}
+	node->next = 0;
+	node->prev = 0;
 	return (node);
 }
