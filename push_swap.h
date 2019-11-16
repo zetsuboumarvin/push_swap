@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:33:23 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/15 11:10:36 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 11:54:24 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int					get_last(t_number **stack);
 
 int					get_medium(t_number **stack, int last);
 void				merge(t_number **stack, t_number **stack2);
-int					count_length_in(t_number **stack, int start, int end);
 void				min_sort(t_number **stack, t_sort data, int first);
 int					q_sort(t_number **stack, t_number **stack2);
 void				a_sort2(t_number **stack, int st);
@@ -85,3 +84,14 @@ int					find_and_push(t_number **stack, t_number **stack2, int med, int st);
 void				do_reverse_b(t_number **stack, int direct, int count, int print);
 int					check_sort_rev(t_number **head);
 void				q_sort_b(t_number **stack, t_number **stack2);
+void				chunk_parse(t_number **stack, t_number **stack2, int chunk);
+void				min_sort_b(t_number **stack, t_number **stack2, int n);
+void				find_3_max(t_number **stack, int *f, int *s, int *t);
+int					find_4_max(t_number **stack, int *f, int *s, int *t);
+int					find_bestof3(t_number **stack, int f, int s, int t);
+int					find_bestof2(t_number **stack, int f, int s);
+void				find_and_push_3(t_number **stack, t_number **stack2);
+void				do_correct_reverse(t_number **stack, int num1, int num2, int st);
+int					find_nums(t_number **stack, int *num1, int *num2, int med);
+void				find_and_push_4(t_number **stack, t_number **stack2);
+int					max_except_1(t_number **stack, int f);
