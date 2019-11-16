@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:23:29 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/15 09:06:36 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 16:35:48 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,39 @@ int					find_min_way(t_number **stack, int num, int *count)
 		t_count++;
 		top = top->next;
 	}
+	if (t_count > length / 2)
+	{
+		*count = length - t_count;
+		return (-1);
+	}
+	else
+	{
+		*count = t_count;
+		return (1);
+	}
+}
+
+int					find_min_way_a(t_number **stack, int num, int *count)
+{
+	t_number	*top;
+	int			t_count;
+	int			length;
+	int			min;
+
+	top = *stack;
+	t_count = 0;
+	length = count_length(stack);
+	find_min(stack, &min);
+	while (top->next && top->next != *stack)
+	{
+		t_count++;
+		if (top->num < num && top->next->num > num)
+			break ;
+		top = top->next;
+	}
+	if (top->next && top->next == *stack &&
+		top->num < num && top->next->num > num)
+		t_count++;
 	if (t_count > length / 2)
 	{
 		*count = length - t_count;

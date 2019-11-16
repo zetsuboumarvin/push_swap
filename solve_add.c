@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:23:32 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/13 13:44:05 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 13:28:27 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			get_medium(t_number **stack, int last)
 			top = top->next;
 		}
 		if (left == right || left == right + 1)
-			break;
+			break ;
 		del = del->next;
 	}
 	return (del->num);

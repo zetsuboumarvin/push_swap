@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 20:25:49 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/13 11:14:27 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 13:23:41 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		dsort3(t_number **stack, int first)
 	}
 	else if (a > b && a > c)
 	{
-		count_rotate(stack, 1 ,first);
+		count_rotate(stack, 1, first);
 		dsort2(stack, first);
 	}
 }

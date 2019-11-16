@@ -6,13 +6,13 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:56:24 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/15 10:46:09 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 13:29:40 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		b_dsort3(t_number **stack)
+void			b_dsort3(t_number **stack)
 {
 	t_number	*top;
 	int			a;
@@ -32,12 +32,12 @@ void		b_dsort3(t_number **stack)
 	}
 	else if (a < b && a < c)
 	{
-		count_rotate(stack, 1 ,2);
+		count_rotate(stack, 1, 2);
 		b_sort2(stack, 2);
 	}
 }
 
-void		b_dsort4(t_number **stack)
+void			b_dsort4(t_number **stack)
 {
 	t_number	*top;
 	int			a;
@@ -69,21 +69,7 @@ void		b_dsort4(t_number **stack)
 		b_sort3(stack, 2);
 }
 
-
-
-void		a_sort2(t_number **stack, int st)
-{
-	t_number		*top;
-
-	top = *stack;
-	if (top->num > top->next->num)
-	{
-		swap(stack);
-		st == 1 ? ft_putstr("sa\n") : ft_putstr("sb\n");
-	}
-}
-
-void		a_sort3(t_number **stack, int st)
+void			a_sort3(t_number **stack, int st)
 {
 	t_number	*top;
 	int			a;
@@ -116,7 +102,7 @@ void		a_sort3(t_number **stack, int st)
 	}
 }
 
-void		a_sort4(t_number **stack)
+void			a_sort4(t_number **stack)
 {
 	t_number	*top;
 	int			a;

@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:33:23 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/16 11:54:24 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 15:33:51 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,3 +95,5 @@ void				do_correct_reverse(t_number **stack, int num1, int num2, int st);
 int					find_nums(t_number **stack, int *num1, int *num2, int med);
 void				find_and_push_4(t_number **stack, t_number **stack2);
 int					max_except_1(t_number **stack, int f);
+int					max_except_2(t_number **stack, int f, int s);
+int					find_min_way_a(t_number **stack, int num, int *count);

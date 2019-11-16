@@ -6,13 +6,13 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/13 12:01:15 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 13:29:39 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		free_error(t_number **stack, t_number **stack2, int result)
+int					free_error(t_number **stack, t_number **stack2, int result)
 {
 	free_stack(stack);
 	free_stack(stack2);
@@ -57,7 +57,7 @@ int					check_sort(t_number **head)
 	return (0);
 }
 
-int			create_stack(t_number **stack, char *s)
+int					create_stack(t_number **stack, char *s)
 {
 	int				num;
 
@@ -67,4 +67,16 @@ int			create_stack(t_number **stack, char *s)
 	if (!stack_push_back(stack, num))
 		return (free_error(stack, 0, 0));
 	return (1);
+}
+
+void			a_sort2(t_number **stack, int st)
+{
+	t_number		*top;
+
+	top = *stack;
+	if (top->num > top->next->num)
+	{
+		swap(stack);
+		st == 1 ? ft_putstr("sa\n") : ft_putstr("sb\n");
+	}
 }

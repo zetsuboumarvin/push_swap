@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/11 12:13:33 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 13:23:19 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	read_instructions(t_number **stack, t_number **stack2)
 	while (get_next_line(0, &s) > 0)
 	{
 		if (!ft_strlen(s))
-			break;
+			break ;
 		if (!do_instructions(stack, stack2, s))
 			return (free_error(stack, stack2, 0));
 	}

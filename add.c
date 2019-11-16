@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 11:02:55 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/16 11:43:42 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/16 13:21:11 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int			find_and_push(t_number **stack, t_number **stack2, int med, int st)
 {
-
 	int			num1;
 	int			num2;
-
 
 	if (!find_nums(stack, &num1, &num2, med))
 		return (0);
