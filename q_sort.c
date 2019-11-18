@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:43:24 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/16 13:24:33 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/18 15:55:09 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,25 @@ void		do_correct_reverse(t_number **stack, int num1, int num2, int st)
 	direct1 = find_min_way(stack, num1, &count1);
 	direct2 = find_min_way(stack, num2, &count2);
 	if (count1 < count2)
-		st == 1 ? do_reverse_a(stack, direct1, count1, 1) :
-					do_reverse_b(stack, direct1, count1, 1);
+		st == 1 ? do_reverse_a(stack, direct1, count1) :
+					do_reverse_b(stack, direct1, count1);
 	else
-		st == 1 ? do_reverse_a(stack, direct2, count2, 1) :
-					do_reverse_b(stack, direct2, count2, 1);
+		st == 1 ? do_reverse_a(stack, direct2, count2) :
+					do_reverse_b(stack, direct2, count2);
 }
 
-static int	init_sort_a(t_number **stack, int n)
+static int	init_sort_a(t_number **stack, t_number **stack2, int n, t_opt *opt)
 {
 	if (n == 4)
-		a_dsort4(stack);
+		a_dsort4(stack, stack2, opt);
 	if (n == 3)
-		dsort3(stack, 1);
+		dsort3(stack, stack2, 1, opt);
 	else if (n == 2)
-		dsort2(stack, 1);
+		dsort2(stack, stack2, 1, opt);
 	return ((*stack)->num);
 }
 
-int			q_sort(t_number **stack, t_number **stack2)
+int			q_sort(t_number **stack, t_number **stack2, t_opt *opt)
 {
 	int		med;
 	int		n;
@@ -81,11 +81,11 @@ int			q_sort(t_number **stack, t_number **stack2)
 	chunk = 0;
 	n = 0;
 	if ((n = count_length(stack)) < 5)
-		return (init_sort_a(stack, n));
+		return (init_sort_a(stack, stack2, n, opt));
 	med = get_medium(stack, get_last(stack));
 	while (find_and_push(stack, stack2, med, 1))
 		chunk++;
-	q_sort(stack, stack2);
-	chunk_parse(stack, stack2, chunk);
+	q_sort(stack, stack2, opt);
+	chunk_parse(stack, stack2, chunk, opt);
 	return ((*stack)->num);
 }

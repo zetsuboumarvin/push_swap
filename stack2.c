@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/16 13:29:39 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/18 15:44:24 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,20 @@ int					check_sort(t_number **head)
 	return (0);
 }
 
-int					create_stack(t_number **stack, char *s)
+int					create_stack(t_number **stack, char *s, t_opt *opt)
 {
 	int				num;
 
 	num = 0;
+	if (parse_options(opt, s) && !(opt->help))
+		return (1);
+	else if (parse_options(opt, s) && opt->help)
+	{
+		ft_putstr("Usage: ./push_swap ARGS | ./checker ARGS\nor\n");
+		ft_putstr("./push_swap ARGS\nor\n");
+		ft_putstr("./checker ARGS and then insert commands each with new line\n");
+		return (0);
+	}
 	if (!parse_string(s, &num))
 		return (free_error(stack, 0, 0));
 	if (!stack_push_back(stack, num))
@@ -69,7 +78,7 @@ int					create_stack(t_number **stack, char *s)
 	return (1);
 }
 
-void			a_sort2(t_number **stack, int st)
+void			a_sort2(t_number **stack, t_number **stack2, int st, t_opt *opt)
 {
 	t_number		*top;
 
@@ -78,5 +87,7 @@ void			a_sort2(t_number **stack, int st)
 	{
 		swap(stack);
 		st == 1 ? ft_putstr("sa\n") : ft_putstr("sb\n");
+		if (opt->display)
+			display_stacks(stack, stack2);
 	}
 }

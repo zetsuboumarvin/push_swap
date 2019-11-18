@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 11:02:55 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/16 13:21:11 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/18 15:54:08 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int			find_and_push(t_number **stack, t_number **stack2, int med, int st)
 	return (1);
 }
 
-void		chunk_parse(t_number **stack, t_number **stack2, int chunk)
+void		chunk_parse(t_number **stack, t_number **stack2, int chunk, t_opt *opt)
 {
 	if (chunk == 4)
 	{
 		count_push(stack, stack2, chunk, 1);
-		a_sort4(stack);
+		a_sort4(stack, stack2, opt);
 	}
 	else if (chunk == 3)
 	{
@@ -68,48 +68,4 @@ void		min_sort_b(t_number **stack, t_number **stack2, int n)
 	}
 	else
 		count_push(stack, stack2, 1, 1);
-}
-
-void		find_and_push_3(t_number **stack, t_number **stack2)
-{
-	int			f;
-	int			s;
-	int			t;
-	int			best;
-	int			n;
-
-	find_3_max(stack2, &f, &s, &t);
-	best = find_bestof3(stack2, f, s, t);
-	do_reverse_b(stack2, find_min_way(stack2, best, &n), n, 1);
-	count_push(stack, stack2, 1, 1);
-	if (best == f)
-		best = find_bestof2(stack2, s, t);
-	else if (best == s)
-		best = find_bestof2(stack2, f, t);
-	else
-		best = find_bestof2(stack2, f, s);
-	do_reverse_b(stack2, find_min_way(stack2, best, &n), n, 1);
-	count_push(stack, stack2, 1, 1);
-	find_max(stack2, &best);
-	do_reverse_b(stack2, find_min_way(stack2, best, &n), n, 1);
-	count_push(stack, stack2, 1, 1);
-}
-
-void		find_and_push_4(t_number **stack, t_number **stack2)
-{
-	int			f;
-	int			s;
-	int			t;
-	int			best;
-	int			four;
-
-	four = find_4_max(stack2, &f, &s, &t);
-	best = find_bestof3(stack2, f, s, t);
-	find_min_way(stack2, best, &f);
-	find_min_way(stack2, four, &s);
-	if (s < f)
-		best = four;
-	do_reverse_b(stack2, find_min_way(stack2, best, &f), f, 1);
-	count_push(stack, stack2, 1, 1);
-	find_and_push_3(stack, stack2);
 }

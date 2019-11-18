@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/16 13:23:19 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/18 12:31:50 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ static int	do_instructions(t_number **stack, t_number **stack2, char *s)
 	return (0);
 }
 
-static int	read_instructions(t_number **stack, t_number **stack2)
+static int	read_instructions(t_number **stack, t_number **stack2, t_opt *opt)
 {
 	char	*s;
 
+	if (opt->display)
+		display_stacks(stack, stack2);
 	while (get_next_line(0, &s) > 0)
 	{
 		if (!ft_strlen(s))
 			break ;
 		if (!do_instructions(stack, stack2, s))
 			return (free_error(stack, stack2, 0));
+		if (opt->display)
+			display_stacks(stack, stack2);
 	}
 	return (1);
 }
@@ -57,15 +61,16 @@ int			main(int argc, char **argv)
 {
 	t_number	*stack;
 	t_number	*stack2;
+	t_opt		*opt;
 
 	stack = 0;
 	stack2 = 0;
-	if (argc == 1)
+	if (!create_opt(&opt) || argc == 1)
 		return (1);
 	while (argc-- > 1)
-		if (!create_stack(&stack, *(++argv)))
+		if (!create_stack(&stack, *(++argv), opt))
 			return (1);
-	if (!read_instructions(&stack, &stack2))
+	if (!read_instructions(&stack, &stack2, opt))
 		return (1);
 	if (!check_sort(&stack) || stack2)
 		ft_putstr("KO\n");

@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:23:29 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/16 16:35:48 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/18 09:17:05 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void				find_min(t_number **stack, int *tmin)
 		return ;
 	top = *stack;
 	min = top->num;
-	while (top->next != *stack)
+	while (top->next && top->next != *stack)
 	{
 		if (top->num < min)
 			min = top->num;
