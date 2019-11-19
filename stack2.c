@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 11:50:34 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 14:39:45 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int					create_stack(t_number **stack, char *s, t_opt *opt)
 		ft_putstr("Usage: ./push_swap ARGS | ./checker ARGS\nor\n");
 		ft_putstr("./push_swap ARGS\nor\n");
 		ft_putstr("./checker ARGS and then insert commands each with new line\n");
-		ft_putstr("Flags: -c - color, -v - visual mode\n");
+		ft_putstr("Flags: -c - color, -v - visual mode, f - write in file\n");
 		return (0);
 	}
 	if (!(n = parse_string(s, num)))
@@ -82,7 +82,7 @@ int					create_stack(t_number **stack, char *s, t_opt *opt)
 	return (1);
 }
 
-void			a_sort2(t_number **stack, t_number **stack2, int st, t_opt *opt)
+void			a_sort2(t_number **stack, t_number **stack2, t_opt *opt)
 {
 	t_number		*top;
 
@@ -90,7 +90,7 @@ void			a_sort2(t_number **stack, t_number **stack2, int st, t_opt *opt)
 	if (top->num > top->next->num)
 	{
 		swap(stack);
-		st == 1 ? ft_putstr("sa\n") : ft_putstr("sb\n");
+		ft_putstr_fd("sa\n", opt->fd);
 		if (opt->display)
 			display_stacks(stack, stack2);
 	}

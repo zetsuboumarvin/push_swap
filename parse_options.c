@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 11:29:34 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 11:05:30 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 16:42:41 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@ int			create_opt(t_opt **opt)
 	(*opt)->help = 0;
 	(*opt)->color = 0;
 	(*opt)->display = 0;
+	(*opt)->file = 0;
+	(*opt)->fd = 1;
 	return (1);
 }
 
 int			parse_options(t_opt *opt, char *s)
 {
-	if (s[0] != '-' || ft_strlen(s) > 4)
+	int		fd;
+
+	if (s[0] != '-')
 		return (0);
 	if (ft_strchr(s, 'h'))
 		opt->help = 1;
@@ -33,7 +37,15 @@ int			parse_options(t_opt *opt, char *s)
 		opt->display = 1;
 	if (ft_strchr(s, 'c'))
 		opt->color = 1;
-	if (opt->help || opt->display || opt->color)
+	if (ft_strchr(s, 'f'))
+	{
+		opt->file = 1;
+		fd = open("push_swap_commands.txt", O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+		if (fd <= 0)
+			return (0);
+		opt->fd = fd;
+	}
+	if (opt->help || opt->display || opt->color || opt->file)
 		return (1);
 	return (0);
 }

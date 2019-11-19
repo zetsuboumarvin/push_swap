@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 19:00:05 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 10:27:36 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 16:09:42 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,13 @@ void			q_sort_b(t_number **stack, t_number **stack2, t_opt *opt)
 			break;
 		top = top->next;
 	}
-	if (opt->display)
-	{
-		do_reverse_b_p(stack, stack2, find_min_way(stack2, best_num, &count_b), count_b);
-		do_reverse_a_p(stack, stack2, find_min_way_a(stack, best_num, &count_a), count_a);
-	}
-	else
-	{
-		do_reverse_b(stack2, find_min_way(stack2, best_num, &count_b), count_b);
-		do_reverse_a(stack, find_min_way_a(stack, best_num, &count_a), count_a);
-	}
-	count_push(stack, stack2, 1, 1);
-	if (opt->display)
-		display_stacks(stack, stack2);
+	opt->direct = find_min_way(stack2, best_num, &count_b);
+	opt->count = count_b;
+	do_reverse_b(stack, stack2, opt);
+	opt->direct = find_min_way_a(stack, best_num, &count_a);
+	opt->count = count_a;
+	do_reverse_a(stack, stack2, opt);
+	opt->count = 1;
+	opt->st = 1;
+	count_push(stack, stack2, opt);
 }

@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:42:46 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/15 11:11:15 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 15:42:21 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,24 @@ int			push_from_to(t_number **consumer, t_number **producer)
 	return (1);
 }
 
-void		count_push(t_number **cons, t_number **prod, int count, int st)
+void		count_push(t_number **cons, t_number **prod, t_opt *opt)
 {
 	t_number	*node;
 
-	while (count-- > 0)
+	while (opt->count-- > 0)
 	{
 		node = pop(prod);
 		if (!node)
 			return ;
 		push(cons, node);
-		if (st == 1)
-			ft_putstr("pa\n");
-		else if (st == 2)
-			ft_putstr("pb\n");
+		if (opt->st == 1)
+			ft_putstr_fd("pa\n", opt->fd);
+		else if (opt->st == 2)
+			ft_putstr_fd("pb\n", opt->fd);
+		if (opt->display && opt->st == 1)
+			display_stacks(cons, prod);
+		else if (opt->display && opt->st == 2)
+			display_stacks(prod, cons);
 	}
 }
 

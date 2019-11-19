@@ -6,48 +6,56 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:23:32 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/18 15:41:41 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 18:31:54 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		do_reverse_a(t_number **stack, int direct, int count)
+void		do_reverse_a(t_number **stack, t_number **stack2, t_opt *opt)
 {
-	if (direct == 1)
+	if (opt->direct == 1)
 	{
-		while (count-- > 0)
+		while (opt->count-- > 0)
 		{
 			rotate(stack);
-			ft_putstr("ra\n");
+			ft_putstr_fd("ra\n", opt->fd);
+			if (opt->display)
+				display_stacks(stack, stack2);
 		}
 	}
 	else
 	{
-		while (count-- > 0)
+		while (opt->count-- > 0)
 		{
 			rev_rotate(stack);
-			ft_putstr("rra\n");
+			ft_putstr_fd("rra\n", opt->fd);
+			if (opt->display)
+				display_stacks(stack, stack2);
 		}
 	}
 }
 
-void		do_reverse_b(t_number **stack, int direct, int count)
+void		do_reverse_b(t_number **stack, t_number **stack2, t_opt *opt)
 {
-	if (direct == 1)
+	if (opt->direct == 1)
 	{
-		while (count-- > 0)
+		while (opt->count-- > 0)
 		{
-			rotate(stack);
-			ft_putstr("rb\n");
+			rotate(stack2);
+			ft_putstr_fd("rb\n", opt->fd);
+			if (opt->display)
+				display_stacks(stack, stack2);
 		}
 	}
 	else
 	{
-		while (count-- > 0)
+		while (opt->count-- > 0)
 		{
-			rev_rotate(stack);
-			ft_putstr("rrb\n");
+			rev_rotate(stack2);
+			ft_putstr_fd("rrb\n", opt->fd);
+			if (opt->display)
+				display_stacks(stack, stack2);
 		}
 	}
 }
@@ -73,6 +81,10 @@ int			get_medium(t_number **stack, int last)
 				right++;
 			top = top->next;
 		}
+		if (top->num <= del->num)
+			left++;
+		else
+			right++;
 		if (left == right || left == right + 1)
 			break ;
 		del = del->next;
