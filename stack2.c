@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/18 15:44:24 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:50:34 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ int					check_sort(t_number **head)
 
 int					create_stack(t_number **stack, char *s, t_opt *opt)
 {
-	int				num;
+	int				num[1000];
+	int				n;
+	int				i;
 
-	num = 0;
+	i = 0;
 	if (parse_options(opt, s) && !(opt->help))
 		return (1);
 	else if (parse_options(opt, s) && opt->help)
@@ -69,12 +71,14 @@ int					create_stack(t_number **stack, char *s, t_opt *opt)
 		ft_putstr("Usage: ./push_swap ARGS | ./checker ARGS\nor\n");
 		ft_putstr("./push_swap ARGS\nor\n");
 		ft_putstr("./checker ARGS and then insert commands each with new line\n");
+		ft_putstr("Flags: -c - color, -v - visual mode\n");
 		return (0);
 	}
-	if (!parse_string(s, &num))
+	if (!(n = parse_string(s, num)))
 		return (free_error(stack, 0, 0));
-	if (!stack_push_back(stack, num))
-		return (free_error(stack, 0, 0));
+	while (n-- > 0)
+		if (!stack_push_back(stack, num[i++]))
+			return (free_error(stack, 0, 0));
 	return (1);
 }
 
