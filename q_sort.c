@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:43:24 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 18:46:32 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 18:54:53 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,10 @@ int			q_sort(t_number **stack, t_number **stack2, t_opt *opt)
 	med = get_medium(stack, get_last(stack));
 	while (find_and_push(stack, stack2, med, opt))
 		chunk++;
+	//THINK
+	if (chunk < 4)
+		do_sort_b(stack, stack2, opt, chunk);
+	//
 	q_sort(stack, stack2, opt);
 	return ((*stack)->num);
 }
