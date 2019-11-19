@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 14:19:47 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/18 15:39:06 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 11:03:49 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void		do_reverse_b_p(t_number **stack, t_number **stack2, int direct,
 	{
 		while (count-- > 0)
 		{
-			rev_rotate(stack);
-			ft_putstr("rrb2\n");
+			rev_rotate(stack2);
+			ft_putstr("rrb\n");
 			display_stacks(stack, stack2);
 		}
 	}

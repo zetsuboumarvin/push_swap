@@ -6,7 +6,7 @@
 #    By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 12:17:02 by jflorent          #+#    #+#              #
-#    Updated: 2019/11/18 11:29:55 by jflorent         ###   ########.fr        #
+#    Updated: 2019/11/19 10:12:01 by jflorent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBDIR = ft_printf/libft/
 PRINTFDIR = ft_printf/
 FLAGS = -Wall -Werror -Wextra
 SRCS = stack.c stack2.c parse_string.c commands.c solve.c solve_add.c sorting.c \
-		direct_sorting.c q_sort_add.c q_sort.c small_nums.c commands_add.c \
+		direct_sorting.c q_sort_add.c q_sort.c commands_add.c \
 		direct_sorting_invers.c add.c find_max.c commands_add2.c \
 		parse_options.c
 OBJS = $(SRCS:.c=.o)

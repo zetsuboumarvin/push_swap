@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:33:23 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/18 15:54:14 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/19 10:49:56 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ int					check_sort(t_number **head);
 
 void				dsort2(t_number **stack, t_number **stack2, int first, t_opt *opt);
 void				dsort3(t_number **stack, t_number **stack2, int first, t_opt *opt);
-void				argc5(t_number **stack, t_number **stack2, t_opt *opt);
-void				argc6(t_number **stack, t_number **stack2, t_opt *opt);
-void				argc7(t_number **stack, t_number **stack2, t_opt *opt);
 
 void				double_rotate(t_number **stack, t_number **stack2, int count);
 void				double_rev_rotate(t_number **stack, t_number **stack2, int count);
@@ -84,26 +81,19 @@ void				a_sort2(t_number **stack, t_number **stack2, int st, t_opt *opt);
 void				a_sort3(t_number **stack, t_number **stack2, int st, t_opt *opt);
 void				a_sort4(t_number **stack, t_number **stack2, t_opt *opt);
 void				a_dsort4(t_number **stack, t_number **stack2, t_opt *opt);
-void				b_sort2(t_number **stack, int st);
-void				b_sort3(t_number **stack, int st);
-void				b_dsort3(t_number **stack);
-void				b_dsort4(t_number **stack);
-int					find_and_push(t_number **stack, t_number **stack2, int med, int st);
-void				q_sort_b(t_number **stack, t_number **stack2);
+void				b_sort2(t_number **stack, t_number **stack2, t_opt *opt);
+void				b_sort3(t_number **stack, t_number **stack2, t_opt *opt);
+int					find_and_push(t_number **stack, t_number **stack2, int med, t_opt *opt);
+void				q_sort_b(t_number **stack, t_number **stack2, t_opt *opt);
 void				chunk_parse(t_number **stack, t_number **stack2, int chunk, t_opt *opt);
-void				min_sort_b(t_number **stack, t_number **stack2, int n);
-void				find_3_max(t_number **stack, int *f, int *s, int *t);
-int					find_4_max(t_number **stack, int *f, int *s, int *t);
-int					find_bestof3(t_number **stack, int f, int s, int t);
-int					find_bestof2(t_number **stack, int f, int s);
 void				find_and_push_3(t_number **stack, t_number **stack2);
-void				do_correct_reverse(t_number **stack, int num1, int num2, int st);
+int					do_correct_reverse(t_number **stack, t_number **stack2, int med, t_opt *opt);
 int					find_nums(t_number **stack, int *num1, int *num2, int med);
-void				find_and_push_4(t_number **stack, t_number **stack2);
 int					max_except_1(t_number **stack, int f);
 int					max_except_2(t_number **stack, int f, int s);
 int					find_min_way_a(t_number **stack, int num, int *count);
 
 int					create_opt(t_opt **opt);
 void				display_stacks(t_number **stack, t_number **stack2);
+void				display_stacks_color(t_number **stack, t_number **stack2, int color);
 int					parse_options(t_opt *opt, char *s);
