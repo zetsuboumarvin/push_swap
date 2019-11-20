@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 12:11:04 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 16:12:06 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int				free_error(t_number **stack, t_number **stack2,
 {
 	free_stack(stack);
 	free_stack(stack2);
-	free(opt);
+	if (opt)
+		free(opt);
 	ft_putstr_fd("Error\n", 2);
 	return (result);
 }

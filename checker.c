@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 14:33:29 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 16:33:22 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ static int	read_instructions(t_number **stack, t_number **stack2, t_opt *opt)
 		return (0);
 	while (get_next_line(opt->fd, &s) > 0)
 	{
+		if (ft_strlen(s) == 0)
+		{
+			free(s);
+			break ;
+		}
 		if (!do_instructions(stack, stack2, s))
 		{
 			free(s);
@@ -71,7 +76,8 @@ static void	free_all(t_number **stack, t_number **stack2, t_opt *opt)
 		close(opt->fd);
 		free(opt->file_name);
 	}
-	free(opt);
+	if (opt)
+		free(opt);
 }
 
 int			main(int argc, char **argv)
@@ -88,10 +94,7 @@ int			main(int argc, char **argv)
 		if (!create_stack(&stack, *(++argv), opt))
 			return (1);
 	if (!read_instructions(&stack, &stack2, opt))
-	{
-		free_all(&stack, &stack2, opt);
 		return (1);
-	}
 	if (!check_sort(&stack) || stack2)
 		ft_putstr("KO\n");
 	else
