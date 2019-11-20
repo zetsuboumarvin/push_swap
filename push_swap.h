@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:33:23 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 12:07:51 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 12:15:14 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ typedef struct		s_number
 	struct s_number	*next;
 	struct s_number	*prev;
 }					t_number;
-
-typedef struct		s_sort
-{
-	int				mid;
-	int				start;
-	int				end;
-}					t_sort;
 
 typedef struct		s_opt
 {
@@ -83,9 +76,7 @@ void				do_reverse_b(t_number **stack, t_number **stack2,
 int					get_last(t_number **stack);
 
 int					get_medium(t_number **stack, int last);
-void				min_sort(t_number **stack, t_sort data, int first);
 void				q_sort(t_number **stack, t_number **stack2, t_opt *opt);
-void				a_sort2(t_number **stack, t_number **stack2, t_opt *opt);
 int					find_and_push(t_number **stack, t_number **stack2,
 									int med, t_opt *opt);
 void				q_sort_b(t_number **stack, t_number **stack2, t_opt *opt);
@@ -102,7 +93,6 @@ int					parse_options(t_opt *opt, char *s);
 void				do_sort_b(t_number **stack, t_number **stack2, t_opt *opt,
 											int chunk);
 int					free_string_arr(char **s, char *test);
-void				s_sort(t_number **stack, t_number **stack2, t_opt *opt);
 int					init_sort_a(t_number **stack, t_number **stack2, int n,
 											t_opt *opt);
 

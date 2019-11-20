@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 12:03:10 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 12:12:07 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ int			main(int argc, char **argv)
 		ft_putstr("KO\n");
 	else
 		ft_putstr("OK\n");
-	free_all(stack, stack2, opt);
+	free_all(&stack, &stack2, opt);
 	return (0);
 }

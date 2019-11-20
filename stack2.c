@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 11:20:10 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 12:11:04 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,4 @@ int				create_stack(t_number **stack, char *s, t_opt *opt)
 		if (!stack_push_back(stack, num[i++]))
 			return (free_error(stack, 0, 0, opt));
 	return (1);
-}
-
-void			a_sort2(t_number **stack, t_number **stack2, t_opt *opt)
-{
-	t_number		*top;
-
-	top = *stack;
-	if (top->num > top->next->num)
-	{
-		swap(stack);
-		ft_putstr_fd("sa\n", opt->fd);
-		if (opt->display)
-			display_stacks(stack, stack2);
-	}
 }
