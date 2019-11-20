@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:43:24 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 12:04:28 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:11:18 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ void		q_sort(t_number **stack, t_number **stack2, t_opt *opt)
 {
 	int		med;
 	int		n;
-	int		chunk;
 
-	chunk = 0;
-	n = 0;
-	med = get_medium(stack, get_last(stack));
-	while (find_and_push(stack, stack2, med, opt))
-		chunk++;
+	if ((n = count_length(stack)) > 3)
+	{
+		med = get_medium(stack, get_last(stack));
+		while (find_and_push(stack, stack2, med, opt))
+			;
+	}
 	if ((n = count_length(stack)) < 4)
 	{
 		if (opt->color)

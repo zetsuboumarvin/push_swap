@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 11:29:34 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 10:40:30 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:09:22 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			parse_options(t_opt *opt, char *s)
 {
 	int		fd;
 
-	if (s[0] != '-')
+	if (s[0] != '-' || (s[0] == '-' && s[1] >= '0' && s[1] <= '9'))
 		return (0);
 	if (ft_strchr(s, 'f') && !ft_strchr(s, 'F'))
 	{

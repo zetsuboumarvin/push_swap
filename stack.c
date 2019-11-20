@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:30:11 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 11:53:55 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:22:22 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int					stack_push_back(t_number **head, int num)
 			temp = temp->next;
 		}
 		if (temp && temp->num == num)
+		{
+			free(new);
 			return (0);
+		}
 		push_behind(head, new);
 	}
 	return (1);
