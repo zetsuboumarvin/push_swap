@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/18 12:31:50 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 10:07:11 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ static int	read_instructions(t_number **stack, t_number **stack2, t_opt *opt)
 
 	if (opt->display)
 		display_stacks(stack, stack2);
-	while (get_next_line(0, &s) > 0)
+	opt->fd = opt->read_file ? open(opt->file_name, O_RDONLY) : 0;
+	if (opt->fd < 0)
+		return (0);
+	while (get_next_line(opt->fd, &s) > 0)
 	{
 		if (!ft_strlen(s))
 			break ;
@@ -78,5 +81,10 @@ int			main(int argc, char **argv)
 		ft_putstr("OK\n");
 	free_stack(&stack);
 	free_stack(&stack2);
+	if (opt->read_file)
+	{
+		close(opt->fd);
+		free(opt->file_name);
+	}
 	return (0);
 }

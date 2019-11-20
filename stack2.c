@@ -6,13 +6,13 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 14:39:45 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 10:37:36 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int					free_error(t_number **stack, t_number **stack2, int result)
+int				free_error(t_number **stack, t_number **stack2, int result)
 {
 	free_stack(stack);
 	free_stack(stack2);
@@ -20,7 +20,7 @@ int					free_error(t_number **stack, t_number **stack2, int result)
 	return (result);
 }
 
-void				free_stack(t_number **head)
+void			free_stack(t_number **head)
 {
 	t_number		*temp;
 
@@ -37,7 +37,7 @@ void				free_stack(t_number **head)
 	}
 }
 
-int					check_sort(t_number **head)
+int				check_sort(t_number **head)
 {
 	t_number	*temp;
 
@@ -57,24 +57,14 @@ int					check_sort(t_number **head)
 	return (0);
 }
 
-int					create_stack(t_number **stack, char *s, t_opt *opt)
+int				create_stack(t_number **stack, char *s, t_opt *opt)
 {
 	int				num[1000];
 	int				n;
 	int				i;
 
 	i = 0;
-	if (parse_options(opt, s) && !(opt->help))
-		return (1);
-	else if (parse_options(opt, s) && opt->help)
-	{
-		ft_putstr("Usage: ./push_swap ARGS | ./checker ARGS\nor\n");
-		ft_putstr("./push_swap ARGS\nor\n");
-		ft_putstr("./checker ARGS and then insert commands each with new line\n");
-		ft_putstr("Flags: -c - color, -v - visual mode, f - write in file\n");
-		return (0);
-	}
-	if (!(n = parse_string(s, num)))
+	if ((n = parse_string(s, num, opt)) == -1)
 		return (free_error(stack, 0, 0));
 	while (n-- > 0)
 		if (!stack_push_back(stack, num[i++]))

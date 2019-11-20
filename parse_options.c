@@ -6,23 +6,30 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 11:29:34 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 16:42:41 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 10:40:30 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			create_opt(t_opt **opt)
+static void	check_opt(t_opt *opt, char *s)
 {
-	*opt = (t_opt*)malloc(sizeof(t_opt));
-	if (!*opt)
-		return (0);
-	(*opt)->help = 0;
-	(*opt)->color = 0;
-	(*opt)->display = 0;
-	(*opt)->file = 0;
-	(*opt)->fd = 1;
-	return (1);
+	int			i;
+
+	if (ft_strchr(s, 'h') && !ft_strchr(s, 'F'))
+		opt->help = 1;
+	if (ft_strchr(s, 'v') && !ft_strchr(s, 'F'))
+		opt->display = 1;
+	if (ft_strchr(s, 'c') && !ft_strchr(s, 'F'))
+		opt->color = 1;
+	if (ft_strchr(s, 'F'))
+	{
+		i = 0;
+		while (s[i] != ' ' && s[i])
+			i++;
+		opt->file_name = ft_strsub(s, 2, i - 2);
+		opt->read_file = 1;
+	}
 }
 
 int			parse_options(t_opt *opt, char *s)
@@ -31,21 +38,17 @@ int			parse_options(t_opt *opt, char *s)
 
 	if (s[0] != '-')
 		return (0);
-	if (ft_strchr(s, 'h'))
-		opt->help = 1;
-	if (ft_strchr(s, 'v'))
-		opt->display = 1;
-	if (ft_strchr(s, 'c'))
-		opt->color = 1;
-	if (ft_strchr(s, 'f'))
+	if (ft_strchr(s, 'f') && !ft_strchr(s, 'F'))
 	{
 		opt->file = 1;
-		fd = open("push_swap_commands.txt", O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+		fd = open("push_swap_commands.txt", O_RDWR | O_CREAT | O_TRUNC,
+					S_IRWXU | S_IRWXG | S_IRWXO);
 		if (fd <= 0)
 			return (0);
 		opt->fd = fd;
 	}
-	if (opt->help || opt->display || opt->color || opt->file)
+	check_opt(opt, s);
+	if (opt->help || opt->display || opt->color || opt->file || opt->read_file)
 		return (1);
 	return (0);
 }
@@ -78,22 +81,27 @@ void		display_stacks(t_number **stack, t_number **stack2)
 	ft_printf("------------------\n\n");
 }
 
-void		display_stacks_color(t_number **stack, t_number **stack2, int color)
+static char	*get_col(int color)
+{
+	if (color == 0)
+		return (ANSI_COLOR_MAGENTA);
+	else if (color == 1)
+		return (ANSI_COLOR_RED);
+	else if (color == 2)
+		return (ANSI_COLOR_YELLOW);
+	else
+		return (ANSI_COLOR_GREEN);
+}
+
+void		display_stacks_color(t_number **stack, t_number **st2, int color)
 {
 	t_number	*top_a;
 	t_number	*top_b;
 	char		*col;
 
 	top_a = *stack;
-	top_b = *stack2;
-	if (color == 0)
-		col = ANSI_COLOR_MAGENTA;
-	else if (color == 1)
-		col = ANSI_COLOR_RED;
-	else if (color == 2)
-		col = ANSI_COLOR_YELLOW;
-	else
-		col = ANSI_COLOR_GREEN;
+	top_b = *st2;
+	col = get_col(color);
 	ft_printf("%s    A        B    {eoc}\n", col);
 	while (top_a || top_b)
 	{
@@ -103,14 +111,8 @@ void		display_stacks_color(t_number **stack, t_number **stack2, int color)
 			ft_printf("%s%-9d{eoc}\n", col, top_a->num);
 		else if (top_b)
 			ft_printf("%s         %-9d{eoc}\n", col, top_b->num);
-		if (top_a && top_a->next && top_a->next != *stack)
-			top_a = top_a->next;
-		else
-			top_a = 0;
-		if (top_b && top_b->next && top_b->next != *stack2)
-			top_b = top_b->next;
-		else
-			top_b = 0;
+		top_a = top_a && top_a->next && top_a->next != *stack ? top_a->next : 0;
+		top_b = top_b && top_b->next && top_b->next != *st2 ? top_b->next : 0;
 	}
 	ft_printf("%s------------------{eoc}\n\n", col);
 }

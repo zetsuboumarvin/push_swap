@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:43:24 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 18:54:53 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 10:31:58 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int			find_nums(t_number **stack, int *num1, int *num2, int med)
 	return (1);
 }
 
-int			do_correct_reverse(t_number **stack, t_number **stack2, int med, t_opt *opt)
+int			do_correct_reverse(t_number **stack, t_number **stack2,
+								int med, t_opt *opt)
 {
 	int			count1;
 	int			count2;
@@ -55,7 +56,8 @@ int			do_correct_reverse(t_number **stack, t_number **stack2, int med, t_opt *op
 		return (0);
 	find_min_way(stack, num1, &count1);
 	find_min_way(stack, num2, &count2);
-	opt->direct = count1 < count2 ? find_min_way(stack, num1, &count1) : find_min_way(stack, num2, &count2);
+	opt->direct = count1 < count2 ? find_min_way(stack, num1, &count1)
+								: find_min_way(stack, num2, &count2);
 	if (count1 < count2)
 	{
 		opt->count = count1;
@@ -72,13 +74,13 @@ int			do_correct_reverse(t_number **stack, t_number **stack2, int med, t_opt *op
 static int	init_sort_a(t_number **stack, t_number **stack2, int n, t_opt *opt)
 {
 	if (n == 3)
-		dsort3(stack, stack2, 1, opt);
+		dsort3(stack, stack2, opt);
 	else if (n == 2)
-		dsort2(stack, stack2, 1, opt);
+		dsort2(stack, stack2, opt);
 	return ((*stack)->num);
 }
 
-int			q_sort(t_number **stack, t_number **stack2, t_opt *opt)
+void		q_sort(t_number **stack, t_number **stack2, t_opt *opt)
 {
 	int		med;
 	int		n;
@@ -86,19 +88,17 @@ int			q_sort(t_number **stack, t_number **stack2, t_opt *opt)
 
 	chunk = 0;
 	n = 0;
+	med = get_medium(stack, get_last(stack));
+	while (find_and_push(stack, stack2, med, opt))
+		chunk++;
 	if ((n = count_length(stack)) < 4)
 	{
 		if (opt->color)
 			display_stacks_color(stack, stack2, 0);
-		return (init_sort_a(stack, stack2, n, opt));
+		init_sort_a(stack, stack2, n, opt);
+		if ((n = count_length(stack2)) < 4)
+			do_sort_b(stack, stack2, opt, n);
+		return ;
 	}
-	med = get_medium(stack, get_last(stack));
-	while (find_and_push(stack, stack2, med, opt))
-		chunk++;
-	//THINK
-	if (chunk < 4)
-		do_sort_b(stack, stack2, opt, chunk);
-	//
 	q_sort(stack, stack2, opt);
-	return ((*stack)->num);
 }

@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:33:23 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 18:42:19 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 10:30:52 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ typedef struct		s_opt
 	int				st;
 	int				count;
 	int				direct;
+	int				read_file;
+	char			*file_name;
 }					t_opt;
 
 int					create_stack(t_number **stack, char *s, t_opt *opt);
-int					parse_string(char *s, int *num);
+int					parse_string(char *s, int *num, t_opt *opt);
 int					free_error(t_number **stack, t_number **stack2, int result);
 void				free_stack(t_number **head);
 int					stack_push_back(t_number **head, int num);
@@ -58,8 +60,8 @@ int					rev_rotate(t_number **stack);
 
 int					check_sort(t_number **head);
 
-void				dsort2(t_number **stack, t_number **stack2, int first, t_opt *opt);
-void				dsort3(t_number **stack, t_number **stack2, int first, t_opt *opt);
+void				dsort2(t_number **stack, t_number **stack2, t_opt *opt);
+void				dsort3(t_number **stack, t_number **stack2, t_opt *opt);
 
 void				count_swap(t_number **stack, int count, int st, t_opt *opt);
 void				count_rotate(t_number **stack, int count, int st, t_opt *opt);
@@ -68,7 +70,6 @@ void				count_push(t_number **cons, t_number **prod, t_opt *opt);
 
 int					find_min_way(t_number **stack, int num, int *count);
 void				find_min(t_number **stack, int *tmin);
-void				find_max(t_number **stack, int *tmax);
 int					count_length(t_number **stack);
 void				do_reverse_a(t_number **stack, t_number **stack2, t_opt *opt);
 void				do_reverse_b(t_number **stack, t_number **stack2, t_opt *opt);
@@ -76,7 +77,7 @@ int					get_last(t_number **stack);
 
 int					get_medium(t_number **stack, int last);
 void				min_sort(t_number **stack, t_sort data, int first);
-int					q_sort(t_number **stack, t_number **stack2, t_opt *opt);
+void				q_sort(t_number **stack, t_number **stack2, t_opt *opt);
 void				a_sort2(t_number **stack, t_number **stack2, t_opt *opt);
 int					find_and_push(t_number **stack, t_number **stack2, int med, t_opt *opt);
 void				q_sort_b(t_number **stack, t_number **stack2, t_opt *opt);
@@ -88,3 +89,5 @@ int					create_opt(t_opt **opt);
 void				display_stacks(t_number **stack, t_number **stack2);
 void				display_stacks_color(t_number **stack, t_number **stack2, int color);
 int					parse_options(t_opt *opt, char *s);
+void				do_sort_b(t_number **stack, t_number **stack2, t_opt *opt, int chunk);
+int					free_string_arr(char **s, char *test);

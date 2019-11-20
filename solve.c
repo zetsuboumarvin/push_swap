@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:23:29 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 18:33:29 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 10:30:46 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ int					find_min_way(t_number **stack, int num, int *count)
 		t_count++;
 		top = top->next;
 	}
+	if (t_count > length / 2)
+	{
+		*count = length - t_count;
+		return (-1);
+	}
+	else
+	{
+		*count = t_count;
+		return (1);
+	}
+}
+
+static int			get_count(int *count, int t_count, int length)
+{
 	if (t_count > length / 2)
 	{
 		*count = length - t_count;
@@ -61,34 +75,7 @@ int					find_min_way_a(t_number **stack, int num, int *count)
 	if (top->next && top->next == *stack &&
 		top->num < num && top->next->num > num)
 		t_count++;
-	if (t_count > length / 2)
-	{
-		*count = length - t_count;
-		return (-1);
-	}
-	else
-	{
-		*count = t_count;
-		return (1);
-	}
-}
-
-void				find_max(t_number **stack, int *tmax)
-{
-	int			max;
-	t_number	*top;
-
-	top = *stack;
-	max = top->num;
-	while (top->next && top->next != *stack)
-	{
-		if (top->num > max)
-			max = top->num;
-		top = top->next;
-	}
-	if (top->num > max)
-		max = top->num;
-	*tmax = max;
+	return (get_count(count, t_count, length));
 }
 
 void				find_min(t_number **stack, int *tmin)

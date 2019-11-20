@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 16:23:32 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 18:31:54 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 10:32:21 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,10 @@ int			get_medium(t_number **stack, int last)
 		top = *stack;
 		while (top->num != last)
 		{
-			if (top->num <= del->num)
-				left++;
-			else
-				right++;
+			top->num <= del->num ? left++ : right++;
 			top = top->next;
 		}
-		if (top->num <= del->num)
-			left++;
-		else
-			right++;
+		top->num <= del->num ? left++ : right++;
 		if (left == right || left == right + 1)
 			break ;
 		del = del->next;
