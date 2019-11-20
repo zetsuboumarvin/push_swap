@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:43:24 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 10:31:58 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 12:04:28 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int			do_correct_reverse(t_number **stack, t_number **stack2,
 	return (1);
 }
 
-static int	init_sort_a(t_number **stack, t_number **stack2, int n, t_opt *opt)
+int			init_sort_a(t_number **stack, t_number **stack2, int n, t_opt *opt)
 {
 	if (n == 3)
 		dsort3(stack, stack2, opt);

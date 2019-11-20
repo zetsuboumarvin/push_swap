@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:23:29 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 10:30:46 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 11:45:42 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int					count_length(t_number **stack)
 
 	count = 0;
 	top = *stack;
+	if (!*stack)
+		return (0);
 	while (top->next && top->next != *stack)
 	{
 		count++;

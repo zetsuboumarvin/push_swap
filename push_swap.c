@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 14:35:57 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/19 17:54:16 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 11:43:25 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static void	print_instructions(t_number **stack, t_number **stack2, t_opt *opt)
 	int			min;
 	int			count;
 
-	q_sort(stack, stack2, opt);
+	if (count_length(stack) < 7)
+		s_sort(stack, stack2, opt);
+	else
+		q_sort(stack, stack2, opt);
 	if (opt->color)
 		display_stacks_color(stack, stack2, 1);
 	while (*stack2)
@@ -48,11 +51,15 @@ int			main(int argc, char **argv)
 		if (!create_stack(&stack, *(++argv), opt))
 			return (1);
 	if (check_sort(&stack))
+	{
+		free(opt);
 		return (0);
+	}
 	print_instructions(&stack, &stack2, opt);
 	free_stack(&stack);
 	free_stack(&stack2);
 	if (opt->fd != 1)
 		close(opt->fd);
+	free(opt);
 	return (0);
 }

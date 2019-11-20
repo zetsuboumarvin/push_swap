@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:33:46 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 10:36:58 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 12:00:04 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,15 @@ int				create_opt(t_opt **opt)
 
 int				free_string_arr(char **s, char *test)
 {
-	while (*s)
-		free(*s++);
+	char	**start;
+	id_t	i;
+
+	start = s;
+	i = 0;
+	while (s && s[i])
+		free(s[i++]);
+	if (start)
+		free(start);
 	if (test && *test)
 		free(test);
 	return (-1);
@@ -77,6 +84,6 @@ int				parse_string(char *s, int *num, t_opt *opt)
 			return (free_string_arr(string, test));
 		free(test);
 	}
-	free_string_arr(string, test);
+	free_string_arr(string, 0);
 	return (j);
 }

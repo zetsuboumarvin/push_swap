@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 10:07:11 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 12:03:10 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,32 @@ static int	read_instructions(t_number **stack, t_number **stack2, t_opt *opt)
 	while (get_next_line(opt->fd, &s) > 0)
 	{
 		if (!ft_strlen(s))
+		{
+			free(s);
 			break ;
+		}
 		if (!do_instructions(stack, stack2, s))
-			return (free_error(stack, stack2, 0));
+		{
+			free(s);
+			return (free_error(stack, stack2, 0, opt));
+		}
 		if (opt->display)
 			display_stacks(stack, stack2);
+		free(s);
 	}
 	return (1);
+}
+
+static void	free_all(t_number **stack, t_number **stack2, t_opt *opt)
+{
+	free_stack(stack);
+	free_stack(stack2);
+	if (opt->read_file)
+	{
+		close(opt->fd);
+		free(opt->file_name);
+	}
+	free(opt);
 }
 
 int			main(int argc, char **argv)
@@ -79,12 +98,6 @@ int			main(int argc, char **argv)
 		ft_putstr("KO\n");
 	else
 		ft_putstr("OK\n");
-	free_stack(&stack);
-	free_stack(&stack2);
-	if (opt->read_file)
-	{
-		close(opt->fd);
-		free(opt->file_name);
-	}
+	free_all(stack, stack2, opt);
 	return (0);
 }

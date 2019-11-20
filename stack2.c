@@ -6,16 +6,18 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 10:37:36 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 11:20:10 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int				free_error(t_number **stack, t_number **stack2, int result)
+int				free_error(t_number **stack, t_number **stack2,
+							int result, t_opt *opt)
 {
 	free_stack(stack);
 	free_stack(stack2);
+	free(opt);
 	ft_putstr_fd("Error\n", 2);
 	return (result);
 }
@@ -65,10 +67,10 @@ int				create_stack(t_number **stack, char *s, t_opt *opt)
 
 	i = 0;
 	if ((n = parse_string(s, num, opt)) == -1)
-		return (free_error(stack, 0, 0));
+		return (free_error(stack, 0, 0, opt));
 	while (n-- > 0)
 		if (!stack_push_back(stack, num[i++]))
-			return (free_error(stack, 0, 0));
+			return (free_error(stack, 0, 0, opt));
 	return (1);
 }
 

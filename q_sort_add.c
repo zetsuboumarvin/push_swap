@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 19:00:05 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 10:21:16 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 12:04:12 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,22 @@ void			q_sort_b(t_number **stack, t_number **stack2, t_opt *opt)
 		top = top->next;
 	}
 	do_rev_and_push(stack, stack2, best_num, opt);
+}
+
+void			s_sort(t_number **stack, t_number **stack2, t_opt *opt)
+{
+	int			n;
+
+	while ((n = count_length(stack)) > 3)
+	{
+		push_from_to(stack2, stack);
+		ft_putstr_fd("pb\n", opt->fd);
+		if (opt->display)
+			display_stacks(stack, stack2);
+	}
+	if (opt->color)
+		display_stacks_color(stack, stack2, 0);
+	init_sort_a(stack, stack2, n, opt);
+	if ((n = count_length(stack2)) < 4)
+		do_sort_b(stack, stack2, opt, n);
 }
