@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 16:33:22 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 16:55:13 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,6 @@ static int	read_instructions(t_number **stack, t_number **stack2, t_opt *opt)
 		free(s);
 	}
 	return (1);
-}
-
-static void	free_all(t_number **stack, t_number **stack2, t_opt *opt)
-{
-	free_stack(stack);
-	free_stack(stack2);
-	if (opt->read_file)
-	{
-		close(opt->fd);
-		free(opt->file_name);
-	}
-	if (opt)
-		free(opt);
 }
 
 int			main(int argc, char **argv)
