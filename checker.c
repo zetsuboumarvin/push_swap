@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:54:41 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 16:55:13 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 17:22:44 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			main(int argc, char **argv)
 	stack = 0;
 	stack2 = 0;
 	if (!create_opt(&opt) || argc == 1)
-		return (1);
+		return (free_all(&stack, &stack2, opt));
 	while (argc-- > 1)
 		if (!create_stack(&stack, *(++argv), opt))
 			return (1);
@@ -86,6 +86,5 @@ int			main(int argc, char **argv)
 		ft_putstr("KO\n");
 	else
 		ft_putstr("OK\n");
-	free_all(&stack, &stack2, opt);
-	return (0);
+	return (free_all(&stack, &stack2, opt));
 }

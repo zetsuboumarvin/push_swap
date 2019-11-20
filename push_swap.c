@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 14:35:57 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 16:56:00 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 17:21:17 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,14 @@ int			main(int argc, char **argv)
 	stack2 = 0;
 	quantity = argc;
 	if (!create_opt(&opt) || argc == 1)
-	{
-		free_all(&stack, &stack2, opt);
-		return (1);
-	}
+		return (free_all(&stack, &stack2, opt));
 	while (argc-- > 1)
 		if (!create_stack(&stack, *(++argv), opt))
 			return (1);
 	if (check_sort(&stack))
-	{
-		free_all(&stack, &stack2, opt);
-		return (0);
-	}
+		return (free_all(&stack, &stack2, opt));
 	print_instructions(&stack, &stack2, opt);
 	if (opt->fd != 1)
 		close(opt->fd);
-	free_all(&stack, &stack2, opt);
-	return (0);
+	return (free_all(&stack, &stack2, opt));
 }

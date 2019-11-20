@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:34:04 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 16:55:10 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 17:21:40 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int				create_stack(t_number **stack, char *s, t_opt *opt)
 	return (1);
 }
 
-void		free_all(t_number **stack, t_number **stack2, t_opt *opt)
+int				free_all(t_number **stack, t_number **stack2, t_opt *opt)
 {
 	free_stack(stack);
 	free_stack(stack2);
@@ -86,4 +86,5 @@ void		free_all(t_number **stack, t_number **stack2, t_opt *opt)
 	}
 	if (opt)
 		free(opt);
+	return (0);
 }
