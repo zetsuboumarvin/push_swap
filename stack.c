@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:30:11 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 14:22:22 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:36:54 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int					stack_push_back(t_number **head, int num)
 	t_number	*temp;
 
 	new = stack_create_node(num);
-	if (!new || !head)
+	if (!new)
 		return (0);
 	if (!(*head))
 		*head = new;
@@ -41,17 +41,11 @@ int					stack_push_back(t_number **head, int num)
 		while (temp && temp->next != *head)
 		{
 			if (temp->num == num)
-			{
-				free(new);
-				return (0);
-			}
+				return (free_node(new));
 			temp = temp->next;
 		}
 		if (temp && temp->num == num)
-		{
-			free(new);
-			return (0);
-		}
+			return (free_node(new));
 		push_behind(head, new);
 	}
 	return (1);

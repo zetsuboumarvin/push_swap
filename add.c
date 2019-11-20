@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 11:02:55 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 12:03:44 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:36:08 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,10 @@ void		do_sort_b(t_number **stack, t_number **stack2,
 		if (opt->display)
 			display_stacks(stack, stack2);
 	}
+}
+
+int			free_node(t_number *new)
+{
+	free(new);
+	return (0);
 }
