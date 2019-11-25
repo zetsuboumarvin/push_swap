@@ -6,7 +6,7 @@
 /*   By: jflorent <jflorent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:33:46 by jflorent          #+#    #+#             */
-/*   Updated: 2019/11/20 17:16:17 by jflorent         ###   ########.fr       */
+/*   Updated: 2019/11/25 11:42:42 by jflorent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int		do_opt(t_opt *opt, char *s)
 		ft_putstr("./push_swap ARGS\nor\n");
 		ft_putstr("./checker ARGS and then insert commands\n");
 		ft_putstr("Flags: -c - color, -v - visual mode, f - write in file\n");
-		ft_putstr("[checker: -Fname_file - read instructions from file\n");
+		ft_putstr("checker: -Fname_file - read instructions from file\n");
 		return (0);
 	}
 	return (0);
